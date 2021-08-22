@@ -9,7 +9,7 @@ _start:
   mov rdi, hello
   call puts
 
-  mov rdi, 0x0
+  mov rdi, 0
   call exit
 
 section .data
