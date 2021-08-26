@@ -18,34 +18,34 @@ _start:
   mov rdi, file_path
   mov rsi, file_mode
   call fopen
-  mov qword [rbp-8], rax
+  mov qword [rbp], rax
 
 loop:
   ; size_t count = fread(buffer, 1, 255, f)
-  lea rdi, [rbp-280]
+  lea rdi, [rbp-272]
   mov rsi, 1
   mov rdx, 255
-  mov rcx, qword [rbp-8]
+  mov rcx, qword [rbp]
   call fread
-  mov qword [rbp-16], rax
+  mov qword [rbp-8], rax
 
   ; buffer[count] = '\0'
-  lea rdx, [rbp-280]
+  lea rdx, [rbp-272]
   add rax, rdx
   mov byte [rax], 0
 
   ; printf("%s", buffer)
   mov rdi, printf_format
-  lea rsi, [rbp-280]
+  lea rsi, [rbp-272]
   mov rax, 0
   call printf
 
   ; if count == 255 continue loop
-  cmp qword [rbp-16], 255
+  cmp qword [rbp-8], 255
   je loop
 
   ; fclose(f)
-  mov rdi, qword [rbp-8]
+  mov rdi, qword [rbp]
   call fclose
 
   ; exit(0)
