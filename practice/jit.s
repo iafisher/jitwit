@@ -58,7 +58,7 @@ _start:
   syscall
 
 error:
-  ; write(stdin, error_message, error_message_length)
+  ; write(stderr, error_message, error_message_length)
   mov rdi, 2
   mov rax, 1
   syscall
