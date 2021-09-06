@@ -14,7 +14,11 @@ int main(int argc, char* argv[]) {
     //
     //   exit(42)
     const char code[] = "\xbf\x2a\x00\x00\x00\xb8\x3c\x00\x00\x00\x0f\x05";
-    char* buffer = mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_ANON|MAP_PRIVATE, -1, 0);
+    char* buffer = mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_ANONYMOUS|MAP_PRIVATE, -1, 0);
+    if (buffer == MAP_FAILED) {
+        perror("mmap() failed");
+        return 1;
+    }
 
     size_t length = sizeof code / sizeof *code;
     for (size_t i = 0; i < length; i++) {
