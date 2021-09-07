@@ -1,11 +1,12 @@
-OBJ = src/main.o
+OBJ = src/get_file_size.o src/main.o src/debug/print_int.o
 BIN = jit
+DEBUG_FLAGS = -g -F dwarf
 
 $(BIN): $(OBJ)
 	ld -nostdlib -o jit $(OBJ)
 
 src/%.o: src/%.s
-	nasm -f elf64 -o $@ $<
+	nasm $(DEBUG_FLAGS) -f elf64 -o $@ $<
 
 .PHONY: clean
 clean:
