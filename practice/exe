@@ -11,10 +11,11 @@ main() {
 
   nasm -f elf64 -o "$object_path" "$input_path"
   ld -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o "$output_path" -lc "$object_path"
-  ./"$output_path" "$@" || true
+  ./"$output_path" "$@" || exitcode=$?
 
   rm -f "$object_path"
   rm -f "$output_path"
+  return $exitcode
 }
 
 main "$@"
