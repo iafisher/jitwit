@@ -1,6 +1,8 @@
 extern get_file_size
 extern print_int
 
+SYSCALL_EXIT equ 60
+
 section .text
 global _start
 
@@ -11,7 +13,7 @@ _start:
   call print_int
 
   mov rdi, 0
-  mov rax, 60
+  mov rax, SYSCALL_EXIT
   syscall
 
 section .data
