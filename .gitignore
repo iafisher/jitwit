@@ -1,2 +1,6 @@
 *.o
 /jit
+
+/practice/pthread.c
+/practice/pthread.s
+/practice/pthread_create.c
