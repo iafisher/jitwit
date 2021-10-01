@@ -6,7 +6,7 @@ $(BIN): $(OBJ)
 	ld -nostdlib -o jit $(OBJ)
 
 src/%.o: src/%.s
-	nasm $(DEBUG_FLAGS) -f elf64 -o $@ $<
+	nasm $(DEBUG_FLAGS) -f elf64 -Isrc/include -o $@ $<
 
 .PHONY: clean
 clean:

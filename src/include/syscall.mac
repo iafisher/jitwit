@@ -1,0 +1,68 @@
+%ifndef SYSCALL_MAC
+%define SYSCALL_MAC
+
+STDIN     equ 0
+STDOUT    equ 1
+STDERR    equ 2
+
+SYS_write equ 1
+SYS_stat  equ 4
+SYS_exit  equ 60
+
+%macro syscall0 1
+  mov rax, %1
+  syscall
+%endmacro
+
+%macro syscall1 2
+  mov rax, %1
+  mov rdi, %2
+  syscall
+%endmacro
+
+%macro syscall2 3
+  mov rax, %1
+  mov rdi, %2
+  mov rsi, %3
+  syscall
+%endmacro
+
+%macro syscall3 4
+  mov rax, %1
+  mov rdi, %2
+  mov rsi, %3
+  mov rdx, %4
+  syscall
+%endmacro
+
+%macro syscall4 5
+  mov rax, %1
+  mov rdi, %2
+  mov rsi, %3
+  mov rdx, %4
+  mov r10, %5
+  syscall
+%endmacro
+
+%macro syscall5 6
+  mov rax, %1
+  mov rdi, %2
+  mov rsi, %3
+  mov rdx, %4
+  mov r10, %5
+  mov r8,  %6
+  syscall
+%endmacro
+
+%macro syscall6 7
+  mov rax, %1
+  mov rdi, %2
+  mov rsi, %3
+  mov rdx, %4
+  mov r10, %5
+  mov r8,  %6
+  mov r9,  %7
+  syscall
+%endmacro
+
+%endif

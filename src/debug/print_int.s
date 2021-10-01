@@ -1,3 +1,5 @@
+%include "syscall.mac"
+
 section .text
 global print_int
 
@@ -40,10 +42,7 @@ print_int_loop:
 
 print_int_loop_end:
   ; write(stdout, buffer, buffer_length)
-  mov rdi, 2
-  mov rdx, r12
-  mov rax, 1
-  syscall
+  syscall3 SYS_write, STDOUT, rsi, r12
 
   pop rbp
   add rsp, 22
@@ -60,11 +59,7 @@ print_int_zero:
   mov byte [rbp+1], 10
 
   ; write(stdout, buffer, buffer_length)
-  mov rdi, 2
-  mov rsi, rbp
-  mov rdx, 2
-  mov rax, 1
-  syscall
+  syscall3 SYS_write, STDOUT, rbp, 2
 
   pop rbp
   add rsp, 2
